@@ -18,7 +18,8 @@ import org.springframework.stereotype.Component;
  * @Version 1.0
  */
 @Component
-@RabbitListener(queues = RabbitConfig.QUEUE_C)
+//@RabbitListener(queues = RabbitConfig.QUEUE_C)
+@RabbitListener(queues ="QUEUE_B")
 public class MsgReceiver {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

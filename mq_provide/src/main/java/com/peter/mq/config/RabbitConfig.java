@@ -118,7 +118,6 @@ public class RabbitConfig {
         return new Queue(QUEUE_B, true);
     }
 
-
     @Bean
     public Queue queueC() {
         //队列持久
@@ -159,7 +158,7 @@ public class RabbitConfig {
                  换句话说,在接收到该Consumer的ack前,它不会将新的Message分发给它 */
                 channel.basicQos(1);
                 byte[] body = message.getBody();
-//                logger.info("接收处理队列A当中的消息:" + new String(body));
+                logger.info("接收处理队列A当中的消息:" + new String(body));
                 /**为了保证永远不会丢失消息，RabbitMQ支持消息应答机制。
                  当消费者接收到消息并完成任务后会往RabbitMQ服务器发送一条确认的命令，然后RabbitMQ才会将消息删除。*/
                 channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
