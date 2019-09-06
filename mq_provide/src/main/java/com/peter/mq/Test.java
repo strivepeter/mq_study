@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @ClassName Test
  * @Description TODO
@@ -27,7 +30,10 @@ public class Test {
     public void Test() {
         MsgProducer msgProducer = new MsgProducer(rabbitTemplate);
         for (int i = 0; i < 100000; i++) {
-            msgProducer.sendAll(String.format("我的消息=%s",i));
+            Map<String, String> map = new HashMap<>();
+            map.put("id", String.valueOf(i));
+            map.put("msg",String.format("我的消息=%s",i));
+            msgProducer.sendAll(map);
             System.out.println(String.format("我的消息=%s",i));
         }
     }

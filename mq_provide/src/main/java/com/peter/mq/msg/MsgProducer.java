@@ -9,6 +9,7 @@ import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -57,7 +58,12 @@ public class MsgProducer implements RabbitTemplate.ConfirmCallback {
     }
 
 
-    public void sendAll(String content) {
+//    public void sendAll(String content) {
+//        rabbitTemplate.convertAndSend(RabbitConfig.FANOUT_EXCHANGE,"", content);
+//    }
+
+
+    public void sendAll(Map<String,String> content) {
         rabbitTemplate.convertAndSend(RabbitConfig.FANOUT_EXCHANGE,"", content);
     }
 

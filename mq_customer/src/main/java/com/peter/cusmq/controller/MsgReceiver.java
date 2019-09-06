@@ -10,6 +10,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 /**
  * @ClassName MsgReceiver
  * @Description TODO
@@ -24,8 +26,9 @@ public class MsgReceiver {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RabbitHandler
-    public void process(String content) {
-        logger.info("接收处理队列C当中的消息： " + content);
+    public void process(Map<String,String> content) {
+        logger.info("接收处理队列C当中的消息： " + content.get("id"));
+        logger.info("接收处理队列C当中的消息： " + content.get("msg"));
     }
 
 }
